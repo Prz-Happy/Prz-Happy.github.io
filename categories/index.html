@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/favicon.svg">
+  
+    <link rel="canonical" href="https://prz-happy.github.io/categories/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fdfeff">
+  <meta name="author" content="Prz">
+  <meta name="keywords" content="技术开发,碎碎念,回望来时路,极客,哲学">
+  
+    <meta name="description" content="Prz 的个人博客：写代码，也沉思。记录技术开发的足迹、碎碎念的随想，以及回望来时路的思考。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="https://prz-happy.github.io/categories/index.html">
+<meta property="og:site_name" content="Prz的岁岁记">
+<meta property="og:description" content="Prz 的个人博客：写代码，也沉思。记录技术开发的足迹、碎碎念的随想，以及回望来时路的思考。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Prz">
+<meta property="article:tag" content="技术开发">
+<meta property="article:tag" content="碎碎念">
+<meta property="article:tag" content="回望来时路">
+<meta property="article:tag" content="极客">
+<meta property="article:tag" content="哲学">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>分类 - Prz的岁岁记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prz-happy.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#64b5f6","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":false,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script>
+/**
+ * 按真实日照自动切换配色：太阳在地平线以上 → 白天模式（蓝天太阳），
+ * 日落后 → 夜间模式（星空月亮）。
+ *
+ * - 观测点：南京（32.06N, 118.78E），换城市改下面两个数即可
+ * - 访客手动切换过的选择（localStorage）始终优先；未手动选择时才按日照自动
+ * - 页面停留期间跨过日出/日落时刻，会在一分钟内自动切换（仅对未手动选择的访客）
+ * - 本文件由 scripts/color-scheme-inline.js 在构建时内联进 <head>（先于主题
+ *   color-schema.js 执行），保证跳转/首屏不闪白；不要再通过 custom_js 引入
+ */
+(function () {
+  var LAT = 32.06;
+  var LNG = 118.78;
+  var LS_KEY = 'Fluid_Color_Scheme';
+
+  /* ---------- 太阳位置计算（基于简化天文算法，误差 < 1 分钟） ---------- */
+  var dayMs = 86400000, J1970 = 2440588, J2000 = 2451545;
+  var rad = Math.PI / 180, obliquity = rad * 23.4397;
+
+  function toDays(date) { return date.valueOf() / dayMs - 0.5 + J1970 - J2000; }
+  function fromJulian(j) { return new Date((j + 0.5 - J1970) * dayMs); }
+  function solarMeanAnomaly(d) { return rad * (357.5291 + 0.98560028 * d); }
+  function eclipticLongitude(M) {
+    var C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M));
+    return M + C + rad * 102.9372 + Math.PI;
+  }
+  function declination(l) { return Math.asin(Math.sin(obliquity) * Math.sin(l)); }
+  function julianCycle(d, lw) { return Math.round(d - 0.0009 - lw / (2 * Math.PI)); }
+  function approxTransit(Ht, lw, n) { return 0.0009 + (Ht + lw) / (2 * Math.PI) + n; }
+  function solarTransitJ(ds, M, Ls) { return J2000 + ds + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * Ls); }
+  function hourAngle(h, phi, d) {
+    return Math.acos((Math.sin(h) - Math.sin(phi) * Math.sin(d)) / (Math.cos(phi) * Math.cos(d)));
+  }
+  function getSetJ(h, lw, phi, dec, n, M, Ls) {
+    return solarTransitJ(approxTransit(hourAngle(h, phi, dec), lw, n), M, Ls);
+  }
+
+  /** 返回 date 当天（观测点当地）的日出/日落时刻，UTC Date 对象 */
+  function sunTimes(date) {
+    var lw = rad * -LNG, phi = rad * LAT;
+    var d = toDays(date);
+    var n = julianCycle(d, lw);
+    var ds = approxTransit(0, lw, n);
+    var M = solarMeanAnomaly(ds);
+    var Ls = eclipticLongitude(M);
+    var dec = declination(Ls);
+    var Jnoon = solarTransitJ(ds, M, Ls);
+    var h = -0.833 * rad; // 太阳视半径 + 大气折射修正
+    var Jset = getSetJ(h, lw, phi, dec, n, M, Ls);
+    var Jrise = Jnoon - (Jset - Jnoon);
+    return { sunrise: fromJulian(Jrise), sunset: fromJulian(Jset) };
+  }
+
+  function isDaytime(now) {
+    var t = sunTimes(now);
+    if (isNaN(t.sunrise.valueOf()) || isNaN(t.sunset.valueOf())) {
+      // 极昼/极夜兜底（南京不会触发，防御性处理）
+      var h = now.getHours();
+      return h >= 6 && h < 18;
+    }
+    return now >= t.sunrise && now <= t.sunset;
+  }
+
+  /* ---------- 应用到 Fluid 的配色机制 ---------- */
+  function targetSchema() { return isDaytime(new Date()) ? 'light' : 'dark'; }
+
+  function hasManualChoice() {
+    try { return localStorage.getItem(LS_KEY) !== null; } catch (e) { return false; }
+  }
+
+  function applyHighlight(schema) {
+    var lightCss = document.getElementById('highlight-css');
+    var darkCss = document.getElementById('highlight-css-dark');
+    if (!lightCss || !darkCss) return;
+    if (schema === 'dark') {
+      darkCss.removeAttribute('disabled');
+      lightCss.setAttribute('disabled', '');
+    } else {
+      lightCss.removeAttribute('disabled');
+      darkCss.setAttribute('disabled', '');
+    }
+  }
+
+  function applyIfNeeded() {
+    var schema = targetSchema();
+    var root = document.documentElement;
+    // 无论是否有手动选择，都把日照对应的自动值写进默认属性：
+    // Fluid 启动时拿「手动选择(localStorage) vs 默认」比较——不同则保留手动，
+    // 相同则归位自动。若手动存在时不更新默认值，主题会误把「手动==静态默认」
+    // 当成自动，导致手动选择在下次跳转时被清掉、状态丢失
+    if (root.getAttribute('data-default-color-scheme') !== schema) {
+      root.setAttribute('data-default-color-scheme', schema);
+    }
+    // 访客手动选择过：运行时配色完全交给 Fluid，这里绝不覆盖
+    if (hasManualChoice()) return;
+    if (document.readyState === 'loading') {
+      // 解析阶段只改默认值，由 Fluid 的启动逻辑统一应用
+      return;
+    }
+    // 页面已加载完成后跨过日出/日落：直接切换运行时配色与代码高亮
+    if (root.getAttribute('data-user-color-scheme') === schema) return;
+    root.setAttribute('data-user-color-scheme', schema);
+    applyHighlight(schema);
+  }
+
+  applyIfNeeded();
+  setInterval(applyIfNeeded, 60000);
+})();
+
+</script>
+<script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<link rel="alternate" href="/atom.xml" title="Prz的岁岁记" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Prz的岁岁记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/dev/" target="_self">
+                
+                <span>技术开发</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/musings/" target="_self">
+                
+                <span>碎碎念</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/retrospection/" target="_self">
+                
+                <span>回望来时路</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/dev/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>技术开发</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/musings/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>碎碎念</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/retrospection/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>回望来时路</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/sky-banner.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">分类</span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术开发"
+        id="heading-9525e15468a4611f237b41d4df9e4107" role="tab" data-toggle="collapse" href="#collapse-9525e15468a4611f237b41d4df9e4107"
+        aria-expanded="false"
+      >
+        技术开发
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/dev/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-9525e15468a4611f237b41d4df9e4107"
+           role="tabpanel" aria-labelledby="heading-9525e15468a4611f237b41d4df9e4107">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/09/20/%E4%B8%80%E9%81%93%E6%9C%89%E8%B6%A3%E7%9A%84%E5%85%AB%E8%82%A1%E9%A2%98/" title="一道有趣的八股题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">一道有趣的八股题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="回望来时路"
+        id="heading-ea3e50d80b967a182d61944d6667ea76" role="tab" data-toggle="collapse" href="#collapse-ea3e50d80b967a182d61944d6667ea76"
+        aria-expanded="false"
+      >
+        回望来时路
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/retrospection/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-ea3e50d80b967a182d61944d6667ea76"
+           role="tabpanel" aria-labelledby="heading-ea3e50d80b967a182d61944d6667ea76">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/09/19/retrospection-placeholder/" title="回望来时路（占位）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">回望来时路（占位）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="碎碎念"
+        id="heading-0e9c81a4c01a64c2df164e8cd1832f2f" role="tab" data-toggle="collapse" href="#collapse-0e9c81a4c01a64c2df164e8cd1832f2f"
+        aria-expanded="false"
+      >
+        碎碎念
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/musings/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-0e9c81a4c01a64c2df164e8cd1832f2f"
+           role="tabpanel" aria-labelledby="heading-0e9c81a4c01a64c2df164e8cd1832f2f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/03/21/%E8%AE%BA%E8%AF%84%E4%BB%B7/" title="论“评价”"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">论“评价”</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> &nbsp;·&nbsp; <a href="/atom.xml" target="_blank" rel="nofollow noopener"><span>RSS</span></a> &nbsp;·&nbsp; <span>while (alive) &#123; think(); write(); &#125;</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

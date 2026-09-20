@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <!-- 天空：顶部湛蓝，地平线处泛白 -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5aa7e0"/>
+      <stop offset="0.45" stop-color="#8cc4ec"/>
+      <stop offset="0.8" stop-color="#c8e6f8"/>
+      <stop offset="1" stop-color="#e9f5fc"/>
+    </linearGradient>
+    <!-- 右上角太阳：光晕 + 柔化发光核心（边缘融入天空） -->
+    <radialGradient id="sunhalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff6d0" stop-opacity="0.65"/>
+      <stop offset="0.45" stop-color="#fff3c4" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#fff3c4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sunblur" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <!-- 云朵柔化 -->
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="softer" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- 太阳：大光晕 → 暖色柔光团 → 白热核心，全程无硬边 -->
+  <circle cx="1150" cy="380" r="330" fill="url(#sunhalo)"/>
+  <circle cx="1150" cy="380" r="165" fill="url(#sunhalo)"/>
+  <circle cx="1150" cy="380" r="60" fill="#fff2c0" opacity="0.92" filter="url(#sunblur)"/>
+  <circle cx="1150" cy="380" r="32" fill="#ffffff" filter="url(#sunblur)"/>
+
+  <!-- 远景云带（地平线附近，模糊清淡） -->
+  <g fill="#ffffff" opacity="0.55" filter="url(#softer)">
+    <ellipse cx="300" cy="820" rx="260" ry="34"/>
+    <ellipse cx="900" cy="860" rx="330" ry="38"/>
+    <ellipse cx="1560" cy="830" rx="300" ry="36"/>
+    <ellipse cx="1200" cy="790" rx="220" ry="28"/>
+  </g>
+
+  <!-- 中景云团 -->
+  <g fill="#ffffff" opacity="0.8" filter="url(#soft)">
+    <g transform="translate(330,300)">
+      <ellipse cx="0" cy="0" rx="150" ry="46"/>
+      <ellipse cx="90" cy="-28" rx="110" ry="44"/>
+      <ellipse cx="-90" cy="-18" rx="100" ry="38"/>
+      <ellipse cx="10" cy="-44" rx="80" ry="34"/>
+    </g>
+    <g transform="translate(1150,220) scale(0.85)">
+      <ellipse cx="0" cy="0" rx="150" ry="46"/>
+      <ellipse cx="95" cy="-26" rx="105" ry="42"/>
+      <ellipse cx="-85" cy="-16" rx="95" ry="36"/>
+    </g>
+    <g transform="translate(1650,560) scale(0.7)">
+      <ellipse cx="0" cy="0" rx="150" ry="46"/>
+      <ellipse cx="90" cy="-24" rx="100" ry="40"/>
+      <ellipse cx="-80" cy="-14" rx="90" ry="34"/>
+    </g>
+    <g transform="translate(640,640) scale(0.55)">
+      <ellipse cx="0" cy="0" rx="150" ry="46"/>
+      <ellipse cx="90" cy="-22" rx="100" ry="40"/>
+    </g>
+  </g>
+
+  <!-- 近景小云（清晰一些，增加层次） -->
+  <g fill="#ffffff" opacity="0.95" filter="url(#soft)">
+    <g transform="translate(1420,130) scale(0.5)">
+      <ellipse cx="0" cy="0" rx="140" ry="42"/>
+      <ellipse cx="80" cy="-24" rx="95" ry="38"/>
+      <ellipse cx="-70" cy="-14" rx="85" ry="32"/>
+    </g>
+    <g transform="translate(180,520) scale(0.42)">
+      <ellipse cx="0" cy="0" rx="140" ry="42"/>
+      <ellipse cx="78" cy="-22" rx="92" ry="36"/>
+    </g>
+  </g>
+
+  <!-- 几只悠闲的小鸟 -->
+  <g stroke="#5b7d95" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M 950 340 q 22 -20 44 0 q 22 -20 44 0"/>
+    <path d="M 1060 300 q 16 -15 32 0 q 16 -15 32 0"/>
+    <path d="M 870 420 q 13 -12 26 0 q 13 -12 26 0"/>
+  </g>
+</svg>

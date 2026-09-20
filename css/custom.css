@@ -1,0 +1,109 @@
+/* ============================================================
+ * Prz的岁岁记 · 自然轻松风（蓝天白云）自定义样式
+ * ============================================================ */
+
+:root {
+  --sky: #6db3e8;
+  --sky-deep: #3b82c4;
+  --sky-pale: #eaf4fc;
+  --ink: #3d4852;
+}
+
+/* 标题与品牌名使用圆润无衬线字体 */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+#subtitle,
+.post-title,
+.index-header .post-title {
+  font-family: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB",
+    "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+/* 品牌名前的小云朵 */
+.navbar-brand::before {
+  content: "☁ ";
+  color: var(--sky);
+}
+
+/* 首屏标语：蓝天上白字带浅影，读得清又不压景 */
+#subtitle {
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(43, 84, 126, 0.5);
+}
+
+/* 引用块 → 淡天蓝底 + 蓝色左边线 */
+.markdown-body blockquote,
+#board .markdown-body blockquote {
+  border-left: 3px solid #90caf9;
+  background: #f2f9ff;
+  border-radius: 0 8px 8px 0;
+  padding: 0.6em 1em;
+  color: inherit;
+}
+[data-user-color-scheme="dark"] .markdown-body blockquote,
+[data-user-color-scheme="dark"] #board .markdown-body blockquote {
+  background: rgba(144, 202, 249, 0.08);
+}
+
+/* 行内代码 → 淡蓝底 */
+.markdown-body code {
+  background: var(--sky-pale);
+  color: var(--sky-deep);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+[data-user-color-scheme="dark"] .markdown-body code {
+  background: rgba(144, 202, 249, 0.12);
+  color: #8ec7f0;
+}
+
+/* 文章卡片悬浮：像云一样轻轻上浮 */
+#board .post,
+.index-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+#board .post:hover,
+.index-card:hover {
+  border-color: #cfe6f7;
+  box-shadow: 0 10px 28px rgba(100, 150, 200, 0.18);
+  transform: translateY(-2px);
+}
+[data-user-color-scheme="dark"] #board .post:hover,
+[data-user-color-scheme="dark"] .index-card:hover {
+  border-color: #2c4a63;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* 夜间模式：banner 换成星空月亮 */
+[data-user-color-scheme="dark"] #banner {
+  background-image: url("/img/night-banner.svg") !important;
+}
+
+/* banner 底部渐隐到页面底色，衔接更自然 */
+#banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(247, 250, 252, 0) 0%,
+    rgba(247, 250, 252, 0.4) 100%
+  );
+}
+[data-user-color-scheme="dark"] #banner::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 24, 32, 0) 0%,
+    rgba(15, 24, 32, 0.5) 100%
+  );
+}
+
+/* 关于页简介为空时不占位 */
+.about-intro:empty {
+  display: none;
+}
